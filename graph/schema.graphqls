@@ -1,0 +1,50 @@
+type FrameRate {
+  id: ID!
+  frameRateNum: Int!
+  frameRateDen: Int!
+}
+
+type Resolution {
+  id: ID!
+  x: Int!
+  y: Int!
+}
+
+type Project {
+  id: ID!
+  name: String!
+  label: String
+  description: String
+  frameRate: FrameRate!
+  resolution: Resolution!
+}
+
+type Query {
+  frameRates: [FrameRate!]!
+  resolutions: [Resolution!]!
+  projects: [Project!]!
+}
+
+input NewFrameRate {
+  frameRateNum: Int!
+  frameRateDen: Int!
+}
+
+input NewResolution {
+  x: Int!
+  y: Int!
+}
+
+input NewProject {
+  name: String!
+  label: String
+  description: String
+  frameRateId: ID!
+  resolutionId: ID!
+}
+
+type Mutation {
+  createFrameRate(input: NewFrameRate!): FrameRate!
+  createResolution(input: NewResolution!): Resolution!
+  createProject(input: NewProject!): Project!
+}
